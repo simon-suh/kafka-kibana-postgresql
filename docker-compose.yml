@@ -32,7 +32,7 @@ services:  # Everything under here is a service (container) that Docker will run
     environment:
       KAFKA_BROKER_ID: 1                     # Unique ID for this Kafka broker. Since we only have one broker, it's 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181          # Tells Kafka where to find Zookeeper. Uses the container name "zookeeper" as the hostname
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092  # The address Kafka tells clients to connect to
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092  # The address Kafka tells clients to connect to
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1        # How many copies of offset data to keep. Set to 1 because we only have 1 broker
 
   # ─── SCHEMA REGISTRY ─────────────────────────────────────
@@ -88,6 +88,8 @@ services:  # Everything under here is a service (container) that Docker will run
       - "5432:5432"                     # PostgreSQL's default port
     environment:
       POSTGRES_USER: admin              # Username for the database
+      # Local development credentials only — never use these in production
+      # In production, use a secrets manager like HashiCorp Vault or AWS Secrets Manager
       POSTGRES_PASSWORD: admin123       # Password for the database (fine for local dev)
       POSTGRES_DB: appdb                # Name of the default database that gets created on startup
     volumes:
@@ -107,6 +109,8 @@ services:  # Everything under here is a service (container) that Docker will run
       - "3000:3000"                     # Grafana's default port — open localhost:3000 in your browser to access the UI
     environment:
       GF_SECURITY_ADMIN_USER: admin         # Grafana admin username
+      # Local development credentials only — never use these in production
+      # In production, use a secrets manager like HashiCorp Vault or AWS Secrets Manager
       GF_SECURITY_ADMIN_PASSWORD: admin123  # Grafana admin password
     volumes:
       - grafana-data:/var/lib/grafana   # Persists Grafana dashboards and settings across restarts
