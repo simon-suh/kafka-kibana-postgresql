@@ -8,13 +8,13 @@ A fully local data pipeline built with Docker Compose. Events are streamed throu
 
 ## Tech Stack
 
-- **Apache Kafka** — event streaming backbone
-  - **Schema Registry** — enforces Avro schema on Kafka messages
-- **Elasticsearch** — search and log indexing engine
-  - **Kibana** — visualization UI for Elasticsearch data
-- **PostgreSQL** — relational database
-- **Grafana** — monitoring dashboards (connects to Elasticsearch and PostgreSQL)
-- **Docker Compose** — runs all services as containers locally
+- **Apache Kafka**: event streaming backbone
+  - **Schema Registry**: enforces Avro schema on Kafka messages
+- **Elasticsearch**: search and log indexing engine
+  - **Kibana**: visualization UI for Elasticsearch data
+- **PostgreSQL**: relational database
+- **Grafana**: monitoring dashboards (connects to Elasticsearch and PostgreSQL)
+- **Docker Compose**: runs all services as containers locally
 
 ## Getting Started
 
